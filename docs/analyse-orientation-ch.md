@@ -85,10 +85,41 @@ Champs principaux d'un document `apprenticeships` :
 - `GET /cookie-check?trg=...` : redirection 302 au premier accès (pose d'un cookie), puis retour sur la page.
 - Scripts tiers : Matomo (`piwik.sdbb.ch`), statuspal, widget de chat.
 
-## 4. Pistes pour l'app de postulation
+## 4. Conditions d'utilisation (vérifiées le 10.11.2026)
+
+Pages lues : [Utilisation](https://www.orientation.ch/fr/utilisation), [Impressum](https://www.orientation.ch/fr/impressum),
+[Protection des données](https://www.orientation.ch/fr/node/130048) (toutes « État : Juin 2026 »).
+
+**Clause déterminante (« Droits d'auteur », page Utilisation) :**
+
+> Les contenus et la structure du site orientation.ch sont protégés par le droit d'auteur. La reproduction totale ou
+> partielle, la diffusion électronique ou par tout autre moyen, la modification, la mise en lien et l'utilisation à des
+> fins commerciales ou publiques (notamment l'intégration dans un site internet) sont soumises à l'accord préalable du CSFO.
+>
+> En l'absence d'accord exprès du CSFO, la reproduction et/ou la diffusion de ces pages constitue une violation de la loi
+> suisse sur le droit d'auteur (LDA) et peut entraîner des conséquences tant civiles que pénales.
+
+Constats :
+
+- **Aucune API publique ni licence open data** n'est mentionnée. Rien n'autorise l'usage de l'index Typesense par des tiers.
+- `robots.txt` (`Allow: /`) autorise l'exploration, mais **pas la réutilisation** du contenu, qui reste soumise à l'accord ci-dessus.
+- **Reprendre les offres dans l'app** (les copier, les afficher, les intégrer) entre dans « reproduction », « diffusion
+  électronique » et « intégration dans un site internet » : **il faut l'accord préalable écrit du CSFO**.
+- La clause cite même la « mise en lien » parmi les usages soumis à accord. Un simple lien vers une page publique est en
+  pratique toléré, mais un lien massif ou automatisé vers les offres devrait figurer dans la demande.
+- **Données personnelles** : les offres contiennent des noms, téléphones et e-mails de personnes de contact. Leur
+  réutilisation relève aussi de la nLPD, avec une finalité limitée à la postulation.
+- Responsable : **CSFO (SDBB), Belpstrasse 37, case postale, 3001 Berne – info@csfo.ch**. Implémentation technique : Dimando Digital.
+
+> Ceci n'est pas un avis juridique ; en cas d'usage commercial, faire valider par un juriste.
+
+## 5. Pistes pour l'app de postulation
 
 1. **Sitemap** : inutilisable pour les offres.
-2. **Typesense** : source structurée (JSON, filtrable par canton, profession et année). C'est une API interne et non
-   documentée du site : avant toute utilisation automatisée, vérifier les conditions d'utilisation d'orientation.ch / CSFO
-   (SDBB), limiter la fréquence des appels et, idéalement, demander un accès officiel.
-3. **Pages de détail** `/fr/apprentissages/{id}` : HTML rendu côté serveur, lisible sans JavaScript.
+2. **Sans accord du CSFO** : ne pas récupérer automatiquement ni réafficher les offres. Usage acceptable : l'utilisateur
+   cherche lui-même sur orientation.ch, puis colle ou saisit l'offre (entreprise, adresse, métier) dans l'app pour préparer
+   sa postulation.
+3. **Avec accord** : écrire à info@csfo.ch pour décrire le projet et demander un accès officiel aux données des places
+   d'apprentissage (le CSFO gère les « échanges de données au sein de la formation professionnelle »), plutôt que
+   d'utiliser l'API Typesense interne.
+4. **Pages de détail** `/fr/apprentissages/{id}` : HTML rendu côté serveur. Les mêmes restrictions s'appliquent.
